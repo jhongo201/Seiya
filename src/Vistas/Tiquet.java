@@ -121,19 +121,25 @@ public class Tiquet extends javax.swing.JFrame {
         String  nn43 = this.n43.getText();
         String  nn44 = this.n44.getText();
         if(tiquet1.equals("")){
+            this.mensaje.setText("");
             JOptionPane.showMessageDialog(null, "El tiquet no puede estar vacio");
-            this.inicializarValores();
+           // this.inicializarValores();
+            return;
         }
         
         if(refe.equals("")){
+            this.mensaje.setText("");
             JOptionPane.showMessageDialog(null, "La referencia no puede estar vacia");
-            this.inicializarValores();
+           // this.inicializarValores();
+            return;
         }else{
             ref = Integer.parseInt(refe);
         }
         if(canti.equals("")){
+            this.mensaje.setText("");
             JOptionPane.showMessageDialog(null, "La cantidad no puede estar vacia");
-            this.inicializarValores();
+            //this.inicializarValores();
+            return;
         }else{
             cant = Integer.parseInt(canti);
         }
@@ -265,7 +271,10 @@ public class Tiquet extends javax.swing.JFrame {
                nnn41 + nnn42 + nnn43 + nnn44;
         
         if(sumPares != cant){
+            this.mensaje.setText("");
             JOptionPane.showMessageDialog(null, "La cantidad indicada no corresponde con los pares asignados");
+            this.mensaje.setText("La cantidad indicada no corresponde con los pares asignados");
+            return;
             //this.inicializarValores();
             
         }
@@ -280,7 +289,8 @@ public class Tiquet extends javax.swing.JFrame {
        
        
         }catch(Exception e){
-            System.out.println("El tiquet esta vacio");
+            this.mensaje.setText("El tiquet esta vacio");
+           // System.out.println("El tiquet esta vacio");
         }
        
        
@@ -294,9 +304,12 @@ public class Tiquet extends javax.swing.JFrame {
         
         
         if(nuevoTiquet.registrarTiquet(tiquet, x, cuno, cdos, observacion, verificacion, ref, cant, n21, n22, n23, n24, n25, n26, n27, n28, n29, n30, n31, n32, n33, n34, n35, n36, n37, n38, n39, n40, n41, n42, n43, n44)){
+            this.mensaje.setText("");
             this.mensaje.setText("Registro Tiquet Exitoso");
-        }else 
+        }else {
+            this.mensaje.setText("");
             this.mensaje.setText("Algo Salio Mal, Intentelo de Nuevo");
+        }
     }
     
     public void consultaID(String nomOrden){
@@ -815,8 +828,8 @@ public class Tiquet extends javax.swing.JFrame {
                     this.mensaje.setText("El Tiquet ya Existe");
                 else{
                     this.capturarDatos();
-                    this.inicializarValores();
-                    this.mensaje.setText("Tiquet Generado Correctamente");
+                   // this.inicializarValores();
+                    //this.mensaje.setText("Tiquet Generado Correctamente");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Generar_Orden.class.getName()).log(Level.SEVERE, null, ex);

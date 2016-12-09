@@ -538,7 +538,7 @@ public class impOrdenCarta {
                       table.addCell(cell);
                       
             table.setWidthPercentage(95f);
-            table.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.setHorizontalAlignment(Element.ALIGN_RIGHT);
         document.add(table);
         
         

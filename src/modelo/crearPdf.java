@@ -138,7 +138,7 @@ public class crearPdf extends conexion{
             Rectangle pageSize = new Rectangle(300f, 792f); //ancho y alto
             //Creacion del documento con un tamaño y unos margenes predeterminados
             
-            Document document = new Document(pageSize,1,1,1,1);
+            Document document = new Document(pageSize,0,1,1,1);
             // Obtener la instancia del PdfWriter
             PdfWriter writer =PdfWriter.getInstance(document, fileOutputStream);
          
