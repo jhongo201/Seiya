@@ -274,7 +274,17 @@ public class crearPdf extends conexion{
             //cell.setBackgroundColor(BaseColor.GRAY);
             table.addCell(cell);
             
-            cell = new PdfPCell(new Phrase(""+tiquet));
+            String Vtiq = "";
+            if(tiquet<10)
+                Vtiq = "000"+tiquet;
+            else if(tiquet>=10 && tiquet<100)
+                Vtiq = "00"+tiquet;
+            else if(tiquet>=100 && tiquet<1000)
+                Vtiq = "0"+tiquet;
+            else 
+                Vtiq = String.valueOf(tiquet);
+            
+            cell = new PdfPCell(new Phrase(Vtiq));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             //cell.setBackgroundColor(BaseColor.ORANGE);
             cell.setColspan(2);
@@ -290,10 +300,18 @@ public class crearPdf extends conexion{
             cell = new PdfPCell(new Phrase(Ref));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             //cell.setBackgroundColor(BaseColor.ORANGE);
+            String referen = "";
+            if(c8<10)
+                referen = "00"+c8;
+            else if(c8>=10 && c8<100)
+                referen = "0"+c8;
+            else 
+                referen = String.valueOf(c8);
+            
             cell.setColspan(2);
             cell.setRowspan(2);
             table.addCell(cell);
-            cell = new PdfPCell(new Phrase(""+c8));
+            cell = new PdfPCell(new Phrase(referen));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             //cell.setBackgroundColor(BaseColor.ORANGE);
             cell.setColspan(3);
@@ -518,7 +536,7 @@ public class crearPdf extends conexion{
             cell.setColspan(3);
             cell.setRowspan(1);
             tabla.addCell(cell);
-            cell = new PdfPCell(new Phrase(""+tiquet));
+            cell = new PdfPCell(new Phrase(Vtiq));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setColspan(3);
             cell.setRowspan(1);
@@ -546,7 +564,7 @@ public class crearPdf extends conexion{
             cell.setColspan(3);
             cell.setRowspan(1);
             tabla.addCell(cell);
-            cell = new PdfPCell(new Phrase(""+c8));
+            cell = new PdfPCell(new Phrase(referen));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setColspan(3);
             cell.setRowspan(1);

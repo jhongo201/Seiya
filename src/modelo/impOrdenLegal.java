@@ -369,7 +369,16 @@ public class impOrdenLegal {
                 if(c1!=0) c01 = String.valueOf(c1);
                 if(c2!=0) c02 = String.valueOf(c2);
             //    if(c3!=0) c03 = String.valueOf(c3);
-                if(c4!=0) c04 = String.valueOf(c4);
+                if(c4!=0){
+                    
+                        if(c4<10)
+                            c04 = "00"+c4;
+                        else if(c4>=10 && c4<100)
+                            c04 = "0"+c4;
+                        else 
+                            c04 = String.valueOf(c4);
+                   // c04 = String.valueOf(c4);
+                } 
                 if(c5!=0){ c05 = String.valueOf(c5); CanTotal+=c5;}
                 if(c8!=0) c08 = String.valueOf(c8);
                 if(c9!=0) c09 = String.valueOf(c9);
@@ -394,8 +403,19 @@ public class impOrdenLegal {
                 if(c28!=0) c028 = String.valueOf(c28);
                 if(c29!=0) c029 = String.valueOf(c29);
                 if(c30!=0) c030 = String.valueOf(c30);
+                
+                String Vtiq = "";
+            if(tiq<10)
+                Vtiq = "000"+tiq;
+            else if(tiq>=10 && tiq<100)
+                Vtiq = "00"+tiq;
+            else if(tiq>=100 && tiq<1000)
+                Vtiq = "0"+tiq;
+            else 
+                Vtiq = String.valueOf(tiq);
+            
                       
-                      cell = new PdfPCell(new Phrase(String.valueOf(tiq)));
+                      cell = new PdfPCell(new Phrase(String.valueOf(Vtiq)));
                       cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                       cell.setColspan(2);
                       cell.setRowspan(1);

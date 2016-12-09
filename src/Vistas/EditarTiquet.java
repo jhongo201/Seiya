@@ -459,8 +459,6 @@ System.out.print("\n llegoo \n");
         jLabel28 = new javax.swing.JLabel();
         mensaje = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Tiquet"));
 
         jLabel8.setText("Tiquet N°:");
