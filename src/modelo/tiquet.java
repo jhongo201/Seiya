@@ -902,6 +902,28 @@ private String ObtenerObjetos(ResultSet Rs) throws SQLException {
     }
 
 
+public boolean actualizarTiquet(int tiquet1, int idorden1, int idcoloruno1, int idcolordos1, 
+            String observacion1, String verificacion1, int ref, int cant, int nn21, int nn22, int nn23, 
+            int nn24, int nn25, int nn26, int nn27, int nn28, int nn29, int nn30, int nn31, 
+            int nn32, int nn33, int nn34, int nn35, int nn36, int nn37, int nn38, int nn39, 
+            int nn40, int nn41, int nn42, int nn43, int nn44){
+    
+    
 
+    
+    String sql = "UPDATE `tiquet` SET `idcoloruno`='"+idcoloruno1+"', `idcolordos`='"+idcolordos1+"', "
+            + "`observacion`='"+observacion1+ "', `referencia`='"+ref+"', `21`='"+nn21+"', `22`='"+nn22+"', "
+            + "`23`='"+nn23+"', `24`='"+nn24+"', `25`='"+nn25+"', `26`='"+nn26+"', `27`='"+nn27+"', `28`='"+nn28+"', "
+            + "`29`='"+nn29+"', `30`='"+nn30+"', `31`='"+nn31+"', `32`='"+nn32+"', `33`='"+nn33+"', `34`='"+nn34+"', "
+            + "`35`='"+nn35+"', `36`='"+nn36+"', `37`='"+nn37+"', `38`='"+nn38+"', `39`='"+nn39+"', `40`='"+nn40+"', "
+            + "`41`='"+nn41+"', `42`='"+nn42+"', `43`='"+nn43+"', `44`='"+nn44+"'  "
+            + "WHERE `tiquet`.`tiquet`='"+tiquet1+"' AND  `tiquet`.`idorden`='"+idorden1+ "'";
+    
+    try {            
+            return Ejecutar(sql);
+        } catch (Exception e) {
+            return false;
+        }
+}
 
 }

@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import modelo.colores;
 import modelo.orden;
 import modelo.tiquet;
+import conexion.conexion;
+import static java.lang.System.exit;
 
 /**
  *
@@ -25,6 +27,16 @@ public class EditarTiquet extends javax.swing.JFrame {
     colores nuevoColor = new colores();
     orden nuevaOrden = new orden();
     String CadOrden = "";
+    int valueTiquet=0;
+    conexion conex = new conexion();;
+    int c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0, c9 = 0, c10 = 0, c11 = 0, c12 = 0, c13 = 0, c14 = 0, c15 = 0;
+    int c16 = 0, c17 = 0, c18 = 0, c19 = 0, c20 = 0, c21 = 0, c22 = 0, c23 = 0, c24 = 0, c25 = 0, c26 = 0, c27 = 0, c28 = 0, c29 = 0;
+    int c30 = 0, c31 = 0, c32 = 0, c33 = 0;
+    String valueObser = "";
+    String valueVerif="";
+    String colorUno="";
+    String colorDos= "";
+    colores verColor = new colores(); 
     
     int idOrden=0;
      int x = 0;
@@ -294,18 +306,19 @@ public class EditarTiquet extends javax.swing.JFrame {
         
         if(sumPares != cant){
             JOptionPane.showMessageDialog(null, "La cantidad indicada no corresponde con los pares asignados");
-            //this.inicializarValores();
+            this.inicializarValores();
+           // exit(0);
             
         }
         
           
         
-      /* this.registrarTiquet(Integer.parseInt(tiquet1), x, cdos, 
+       this.actualizarTiquet(valueTiquet, x, cdos, 
                cuno, observacion, 
                verificacion, ref, cant, nnn21, nnn22, nnn23, nnn24, nnn25, nnn26, nnn27, nnn28, nnn29, 
                nnn30, nnn31, nnn32, nnn33, nnn34, nnn35, nnn36, nnn37, nnn38, nnn39, nnn40, 
                nnn41, nnn42, nnn43, nnn44);
-       */
+       
        
         }catch(Exception e){
             System.out.println("El tiquet esta vacio");
@@ -316,15 +329,15 @@ public class EditarTiquet extends javax.swing.JFrame {
      
      
      
-     public void registrarTiquet(int tiquet, int idorden, int idcoloruno, int idcolordos, 
+     public void actualizarTiquet(int tiquet, int idorden, int idcoloruno, int idcolordos, 
             String observacion, String verificacion, int ref, int cant, int n21, int n22, int n23, 
             int n24, int n25, int n26, int n27, int n28, int n29, int n30, int n31, 
             int n32, int n33, int n34, int n35, int n36, int n37, int n38, int n39, 
             int n40, int n41, int n42, int n43, int n44){
         
         
-        if(nuevoTiquet.registrarTiquet(tiquet, x, cuno, cdos, observacion, verificacion, ref, cant, n21, n22, n23, n24, n25, n26, n27, n28, n29, n30, n31, n32, n33, n34, n35, n36, n37, n38, n39, n40, n41, n42, n43, n44)){
-            this.mensaje.setText("Registro Tiquet Exitoso");
+        if(nuevoTiquet.actualizarTiquet(tiquet, x, cuno, cdos, observacion, verificacion, ref, cant, n21, n22, n23, n24, n25, n26, n27, n28, n29, n30, n31, n32, n33, n34, n35, n36, n37, n38, n39, n40, n41, n42, n43, n44)){
+            this.mensaje.setText("Actualización Exitosa");
         }else 
             this.mensaje.setText("Algo Salio Mal, Intentelo de Nuevo");
     }
@@ -850,6 +863,7 @@ public class EditarTiquet extends javax.swing.JFrame {
          //   idOrden= nuevoTiquet.consultarIdOrden(CadOrden);
             x= nuevoTiquet.consultarIdOrden(CadOrden);
             this.llenarCmbTiquet(x);//llena combo tiquet
+           
         } catch (SQLException ex) {
             Logger.getLogger(Tiquet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -881,13 +895,11 @@ public class EditarTiquet extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbColor2ActionPerformed
 
     private void generarTiquetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarTiquetActionPerformed
-       /* if(con==1)
-            this.mensaje.setText("El Tiquet ya Existe");
-        else{
+      
             this.capturarDatos();
             this.inicializarValores();
-            this.mensaje.setText("Tiquet Generado Correctamente");
-        }*/
+          //  this.mensaje.setText("Tiquet Generado Correctamente");
+       
 
     }//GEN-LAST:event_generarTiquetActionPerformed
 
@@ -895,15 +907,105 @@ public class EditarTiquet extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             int c1,c2,c4,c5,c8=0;
-        String ob = "";
+       // String ob = "";
             String tiq2 = (String) this.cmbTiquet.getSelectedItem();
-            
-         System.out.printf("tiquet seleccionado numero: "+ Integer.parseInt(tiq2));
+            valueTiquet = Integer.parseInt(tiq2);
+            this.nuevoTiquet.consultarIdOrdenTiquet(x);
+             System.out.print("\n la orden es: "+CadOrden+" con id numero: "+x+ " y el tiquet vale: " + valueTiquet);
+             this.consultarDatos(x, valueTiquet);
+             this.llenarCampos();
+        // System.out.printf("tiquet seleccionado numero: "+ Integer.parseInt(tiq2));
         } catch (Exception ex) {
             Logger.getLogger(EditarTiquet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cmbTiquetActionPerformed
 
+    public void consultarDatos(int idOrd, int ValTiq){
+        try {
+            String sql = "Select * from tiquet where idorden = '" + idOrd + "' and tiquet='" + ValTiq + "'";
+            conex.rs = conex.Consultar(sql);
+             
+            while (conex.rs.next())
+            {
+               // System.out.print("el valor de C1 es: " + conex.rs.getInt (1) );
+                c1 = conex.rs.getInt (1); 
+                c2 = conex.rs.getInt (2);
+                c3 = conex.rs.getInt (3);
+                c4 = conex.rs.getInt (4);
+                c5 = conex.rs.getInt (5);
+                valueObser = conex.rs.getString(6);
+                valueVerif = conex.rs.getString (7);
+                c8 = conex.rs.getInt (8); 
+                c9 = conex.rs.getInt (9);
+                c10 = conex.rs.getInt (10);
+                c11 = conex.rs.getInt (11);
+                c12 = conex.rs.getInt (12);
+                c13 = conex.rs.getInt (13);
+                c14 = conex.rs.getInt (14);
+                c15 = conex.rs.getInt (15);
+                c16 = conex.rs.getInt (16);
+                c17 = conex.rs.getInt (17);
+                c18 = conex.rs.getInt (18);
+                c19 = conex.rs.getInt (19);
+                c20 = conex.rs.getInt (20);
+                c21 = conex.rs.getInt (21);
+                c22 = conex.rs.getInt (22);
+                c23 = conex.rs.getInt (23);
+                c24 = conex.rs.getInt (24);
+                c25 = conex.rs.getInt (25);
+                c26 = conex.rs.getInt (26);
+                c27 = conex.rs.getInt (27);
+                c28 = conex.rs.getInt (28);
+                c29 = conex.rs.getInt (29);
+                c30 = conex.rs.getInt (30);
+                c31 = conex.rs.getInt (31);
+                c32 = conex.rs.getInt (32);
+                c33 = conex.rs.getInt (33);
+                colorUno =verColor.consultarNombreColorUno(c4);
+                colorDos =verColor.consultarNombreColorDos(c5);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarTiquet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void llenarCampos(){
+        this.observacion.setText(valueObser);
+        this.referencia.setText(String.valueOf(c8));
+        this.cantidad.setText(String.valueOf(c9));
+        this.cmbColor1.setSelectedItem(colorUno);
+        this.cmbColor2.setSelectedItem(colorDos);
+        this.n21.setText(String.valueOf(c10));
+        this.n22.setText(String.valueOf(c11));
+        this.n23.setText(String.valueOf(c12));
+        this.n24.setText(String.valueOf(c13));
+        this.n25.setText(String.valueOf(c14));
+        this.n26.setText(String.valueOf(c15));
+        this.n27.setText(String.valueOf(c16));
+        this.n28.setText(String.valueOf(c17));
+        this.n29.setText(String.valueOf(c18));
+        this.n30.setText(String.valueOf(c19));
+        this.n31.setText(String.valueOf(c20));
+        this.n32.setText(String.valueOf(c21));
+        this.n33.setText(String.valueOf(c22));
+        this.n34.setText(String.valueOf(c23));
+        this.n35.setText(String.valueOf(c24));
+        this.n36.setText(String.valueOf(c25));
+        this.n37.setText(String.valueOf(c26));
+        this.n38.setText(String.valueOf(c27));
+        this.n39.setText(String.valueOf(c28));
+        this.n40.setText(String.valueOf(c29));
+        this.n41.setText(String.valueOf(c30));
+        this.n42.setText(String.valueOf(c31));
+        this.n43.setText(String.valueOf(c32));
+        this.n44.setText(String.valueOf(c33));
+        
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
