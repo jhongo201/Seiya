@@ -37,6 +37,8 @@ public class EditarTiquet extends javax.swing.JFrame {
     String colorUno="";
     String colorDos= "";
     colores verColor = new colores(); 
+    int sumPares = 0;
+    int cant = 0;
     
     int idOrden=0;
      int x = 0;
@@ -65,7 +67,8 @@ public class EditarTiquet extends javax.swing.JFrame {
         resultat = nuevoTiquet.CargarComboTiquet(id);//La consulta tiene que retornar un ArrayList
 
         for(int i=0; i<resultat.size();i++){
-            cmbTiquet.addItem(resultat.get(i));
+            
+                cmbTiquet.addItem(resultat.get(i));
         }
     }
     
@@ -126,7 +129,7 @@ public class EditarTiquet extends javax.swing.JFrame {
         int nnn21=0, nnn22=0, nnn23=0, nnn24=0, nnn25=0, nnn26=0, nnn27=0, nnn28=0, nnn29=0, nnn30=0, 
                 nnn31=0, nnn32=0, nnn33=0, nnn34=0, nnn35=0, nnn36=0, nnn37=0, nnn38=0, nnn39=0, nnn40=0, 
                 nnn41=0, nnn42=0, nnn43=0, nnn44 = 0;
-        int ref = 0, cant = 0;
+        int ref = 0;
         
       //  String tiquet1 = this.tiquet.getText();
         //int idorden = Integer.parseInt((String) this.cmbOrden.getSelectedItem());
@@ -167,13 +170,15 @@ public class EditarTiquet extends javax.swing.JFrame {
         */
         if(refe.equals("")){
             JOptionPane.showMessageDialog(null, "La referencia no puede estar vacia");
-            this.inicializarValores();
+            //this.inicializarValores();
+            return;
         }else{
             ref = Integer.parseInt(refe);
         }
         if(canti.equals("")){
             JOptionPane.showMessageDialog(null, "La cantidad no puede estar vacia");
-            this.inicializarValores();
+            //this.inicializarValores();
+            return;
         }else{
             cant = Integer.parseInt(canti);
         }
@@ -300,14 +305,16 @@ public class EditarTiquet extends javax.swing.JFrame {
             nnn44 = Integer.parseInt(nn44);
         }
         
-        int sumPares = nnn21 + nnn22 + nnn23 + nnn24 + nnn25 + nnn26 + nnn27 + nnn28 + nnn29 + 
+         sumPares = nnn21 + nnn22 + nnn23 + nnn24 + nnn25 + nnn26 + nnn27 + nnn28 + nnn29 + 
                nnn30 + nnn31 + nnn32 + nnn33 + nnn34 + nnn35 + nnn36 + nnn37 + nnn38 + nnn39 + nnn40 + 
                nnn41 + nnn42 + nnn43 + nnn44;
         
         if(sumPares != cant){
-            JOptionPane.showMessageDialog(null, "La cantidad indicada no corresponde con los pares asignados");
-            this.inicializarValores();
+            //JOptionPane.showMessageDialog(null, "La cantidad indicada no corresponde con los pares asignados");
+            this.mensaje.setText("La cantidad indicada no corresponde con los pares asignados");
+            //this.inicializarValores();
            // exit(0);
+            return;
             
         }
         
@@ -825,8 +832,8 @@ public class EditarTiquet extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -843,7 +850,7 @@ public class EditarTiquet extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
+            .addGap(0, 502, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(17, 17, 17)
@@ -897,7 +904,7 @@ public class EditarTiquet extends javax.swing.JFrame {
     private void generarTiquetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarTiquetActionPerformed
       
             this.capturarDatos();
-            this.inicializarValores();
+           // this.inicializarValores();
           //  this.mensaje.setText("Tiquet Generado Correctamente");
        
 
@@ -906,6 +913,8 @@ public class EditarTiquet extends javax.swing.JFrame {
     private void cmbTiquetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTiquetActionPerformed
         try {
             // TODO add your handling code here:
+            
+            
             int c1,c2,c4,c5,c8=0;
        // String ob = "";
             String tiq2 = (String) this.cmbTiquet.getSelectedItem();
