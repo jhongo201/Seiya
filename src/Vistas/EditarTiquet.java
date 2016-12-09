@@ -65,11 +65,14 @@ public class EditarTiquet extends javax.swing.JFrame {
         cmbTiquet.removeAllItems(); //Vaciamos el JComboBox
         ArrayList<String> resultat;
         resultat = nuevoTiquet.CargarComboTiquet(id);//La consulta tiene que retornar un ArrayList
-
+System.out.print("\n llegoo \n");
         for(int i=0; i<resultat.size();i++){
-            
                 cmbTiquet.addItem(resultat.get(i));
         }
+        if(this.cmbTiquet.getSelectedIndex()==-1)
+           this.mensaje.setText("No hay Tiquets Relacionados a la Orden " + CadOrden);
+        else
+            this.mensaje.setText("");
     }
     
      public void inicializarValores(){
