@@ -32,7 +32,7 @@ public class EditarTiquet extends javax.swing.JFrame {
      int cdos = 0;
 
     /**
-     * 
+     * vista de edit tiquet
      * Creates new form EditarTiquet
      */
     public EditarTiquet() throws SQLException {
